@@ -3,6 +3,7 @@
 
 <Configure id="zkApp" class="org.eclipse.jetty.webapp.WebAppContext">
 	<Set name="resourceBase">src/main/webapp</Set>
+	<!-- remove annotation scanning and enable websockets later (Optional for additional start speedup) -->
 	<Set name="configurationClasses">
 		<Array type="java.lang.String">
 			<Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
@@ -16,7 +17,7 @@
 		</Array>
 	</Set>
 
-<!-- initialize websockets manually to avoid annotation scanning () -->
+ 	<!-- initialize websockets manually to avoid annotation scanning (Optional for additional start speedup) -->
 	<Set name="server">
 		<Ref refid="Server" />
 	</Set>
@@ -24,5 +25,11 @@
 		<Arg>
 			<Ref refid="zkApp" />
 		</Arg>
+	</Call>
+
+	<!-- disable useFileMappedBuffer: allows updating static resource files on windows without restart -->
+	<Call name="setInitParameter">
+		<Arg>org.eclipse.jetty.servlet.Default.useFileMappedBuffer</Arg>
+		<Arg>false</Arg>
 	</Call>
 </Configure>
