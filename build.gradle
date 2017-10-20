@@ -2,8 +2,8 @@ apply plugin: 'war'
 
 //gretty
 buildscript {
-  repositories { jcenter() }
-  dependencies { classpath 'org.akhikhl.gretty:gretty:+' }
+	repositories { jcenter() }
+	dependencies { classpath 'org.akhikhl.gretty:gretty:+' }
 }
 apply plugin: 'org.akhikhl.gretty'
 gretty {
@@ -12,17 +12,17 @@ gretty {
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-//    maven {
-//        credentials {
-//            username 'user'
-//            password 'password'
-//        }
-//    	url "https://maven.zkoss.org/repo/zk/pe" //ZK-PE repo requires login
-//    	url "https://maven.zkoss.org/repo/zk/ee" //ZK-EE repo requires login
-//    }
-    maven { url "http://mavensync.zkoss.org/maven2" }
-    maven { url "http://mavensync.zkoss.org/eval" }
-    mavenCentral()
+//	maven {
+//	credentials {
+//		username mavenUser
+//		password mavenPassword
+//	}
+////    	url "https://maven.zkoss.org/repo/zk/pe" //ZK-PE repo requires login
+//		url "https://maven.zkoss.org/repo/zk/ee" //ZK-EE repo requires login
+//	}
+	maven { url "http://mavensync.zkoss.org/maven2" }
+	maven { url "http://mavensync.zkoss.org/eval" }
+	mavenCentral()
 }
 
 sourceCompatibility = '1.8'
