@@ -13,7 +13,7 @@ gretty {
 // In this section you declare where to find the dependencies of your project
 repositories {
 //	maven {
-//	credentials {
+//	credentials { /*e.g. defined in ~/.gradle/gradle.properties*/
 //		username mavenUser
 //		password mavenPassword
 //	}

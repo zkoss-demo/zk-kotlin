@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.zkoss.zats.junit.AutoClient;
+import org.zkoss.zats.junit.AutoEnvironment;
 import org.zkoss.zats.mimic.ComponentAgent;
 import org.zkoss.zats.mimic.DesktopAgent;
 import org.zkoss.zats.mimic.operation.InputAgent;
@@ -16,11 +18,11 @@ import org.zkoss.zul.Textbox;
 public class IndexTest {
 	//init/destroy a DefaultZatsEnvironment once for the whole test class
 	@ClassRule
-	public static ZatsEnv env = new ZatsEnv("./src/main/webapp/WEB-INF", "./src/main/webapp");
+	public static AutoEnvironment env = new AutoEnvironment("./src/main/webapp/WEB-INF", "./src/main/webapp");
 
 	//automatically creates/destroys a Zats Client around each @Test method
 	@Rule
-	public ZatsEnv.AutoClient client = env.autoClient();
+	public AutoClient client = env.autoClient();
 
 	@Test
 	public void testIndex() {
