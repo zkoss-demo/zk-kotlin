@@ -1,32 +1,33 @@
 apply plugin: 'war'
 
-//gretty
 buildscript {
-	repositories { jcenter() }
-	dependencies { classpath 'org.akhikhl.gretty:gretty:+' }
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+		classpath "org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}"
+		classpath "org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}"
+	}
 }
-apply plugin: 'org.akhikhl.gretty'
-gretty {
-	servletContainer = 'jetty9.4' //jetty7, jetty8, jetty9, jetty9.3, jetty9.4
+
+apply plugin: "kotlin"
+apply plugin: "kotlin-noarg"
+apply plugin: "kotlin-allopen"
+
+noArg {
+	annotation("zk.gradle.vm.FormBean")
+}
+allOpen {
+	annotation("zk.gradle.vm.FormBean")
 }
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-//	maven {
-//	credentials { /*e.g. defined in ~/.gradle/gradle.properties*/
-//		username mavenUser
-//		password mavenPassword
-//	}
-////    	url "https://maven.zkoss.org/repo/zk/pe" //ZK-PE repo requires login
-//		url "https://maven.zkoss.org/repo/zk/ee" //ZK-EE repo requires login
-//	}
 	maven { url "http://mavensync.zkoss.org/maven2" }
 	maven { url "http://mavensync.zkoss.org/eval" }
 	mavenCentral()
 }
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 sourceSets {
 	jettyRunner {
@@ -36,15 +37,11 @@ sourceSets {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-	compile "org.zkoss.zk:zk:${zkVersion}"
-	compile "org.zkoss.zk:zkbind:${zkVersion}"
-	compile "org.zkoss.zk:zkex:${zkVersion}"    /*ZK PE*/
-	compile "org.zkoss.zk:zkmax:${zkVersion}"   /*ZK EE*/
-	compile "org.zkoss.zk:zuti:${zkVersion}"    /*optional enable for shadow elements support */
-//	compile "org.zkoss.zk:zhtml:${zkVersion}"   /*optional enable for xhtml component support */
-//	compile "org.zkoss.zk:zkplus:${zkVersion}"  /*optional enable for 3rd party framework integration support */
+	compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+	compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
 
-	compile "commons-io:commons-io:${commonsIoVersion}"
+	compile "org.zkoss.zk:zkmax:${zkVersion}"
+	compile "org.zkoss.zk:zuti:${zkVersion}"
 
 	testCompile "org.zkoss.zats:zats-mimic-ext7:${zatsVersion}"
 	testCompile "junit:junit:${junitVersion}"

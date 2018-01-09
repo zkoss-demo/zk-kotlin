@@ -1,0 +1,35 @@
+<zk>
+	<div viewModel="@id('vm') @init('zk.gradle.vm.PersonFormViewModel')" cmds="@ref(vm.commands)">
+		<forEach items="@init(vm.persons)" var="person">
+			<div>
+				<a onClick="@command(cmds.edit, person=person)" iconSclass="z-icon-edit"/>
+				${person}
+			</div>
+		</forEach>
+
+		<apply template="editPersonForm" person="@load(vm.personToEdit)"/>
+
+		<template name="editPersonForm">
+			<if test="@load(person ne null)">
+				<div form="@id('fx') @load(person) @load(person, after='reset') @save(person, before='save')">
+					<apply person="@load(fx)">
+						Name: <textbox value="@bind(person.name)"/>
+						<separator/>
+						Age: <intbox value="@bind(person.age)"/>
+						<separator/>
+						<apply address="@load(person.address)">
+							Street: <textbox value="@bind(address.street)"/>
+							<separator/>
+							HouseNumber: <textbox value="@bind(address.houseNumber)"/>
+							<separator/>
+							City: <textbox value="@bind(address.city)"/>
+							<separator/>
+						</apply>
+					</apply>
+					<button label="save" onClick="@command(cmds.save)"/>
+					<button label="cancel" onClick="@command(cmds.cancel)"/>
+				</div>
+			</if>
+		</template>
+	</div>
+</zk>
