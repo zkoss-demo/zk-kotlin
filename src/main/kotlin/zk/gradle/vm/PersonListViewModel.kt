@@ -8,21 +8,23 @@ import org.zkoss.zul.ListModelList
 
 const val PERSON_TO_EDIT = "personToEdit"
 
-class PersonFormViewModel {
-    val commands = object {
-        val edit = "edit"
-        val save = "save"
-        val cancel = "cancel"
-    }
+object EditCommands {
+    val edit: String = "edit"
+    val save: String = "save"
+    val cancel: String = "cancel"
+}
 
+class PersonListViewModel {
+    val commands = EditCommands
     val persons = ListModelList(listOf(
             Person(name = "Peter", age = 45, address = Address(street = "Nanjing Rd", houseNumber = 123, city = "Taipei")),
             Person(name = "Marvin", age = 30, address = Address(street = "Main St", houseNumber = 30, city = "London")),
-            Person(name = "Graham", age = 37, address = Address(street = "Bahnhoftstr.", houseNumber = 12, city = "Berlin"))
+            Person(name = "Graham", age = 37, address = Address(street = "Bahnhofstr.", houseNumber = 12, city = "Berlin"))
     ));
 
     var personToEdit: Person? = null
 
+    @Command
     @NotifyChange(PERSON_TO_EDIT)
     fun edit(@BindingParam("person") person: Person) {
         personToEdit = person
@@ -44,8 +46,6 @@ class PersonFormViewModel {
     }
 }
 
-@FormBean
-data class Person(var name: String, var age: Int, var address: Address)
+@FormBean data class Person(var name: String, var age: Int, var address: Address)
 
-@FormBean
-data class Address(var street: String, var houseNumber: Int, var city: String)
+@FormBean data class Address(var street: String, var houseNumber: Int, var city: String)

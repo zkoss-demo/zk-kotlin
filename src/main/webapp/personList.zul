@@ -1,5 +1,5 @@
 <zk>
-	<div viewModel="@id('vm') @init('zk.gradle.vm.PersonFormViewModel')" cmds="@ref(vm.commands)">
+	<div viewModel="@id('vm') @init('zk.gradle.vm.PersonListViewModel')" cmds="@ref(vm.commands)">
 		<forEach items="@init(vm.persons)" var="person">
 			<div>
 				<a onClick="@command(cmds.edit, person=person)" iconSclass="z-icon-edit"/>
@@ -11,7 +11,7 @@
 
 		<template name="editPersonForm">
 			<if test="@load(person ne null)">
-				<div form="@id('fx') @load(person) @load(person, after='reset') @save(person, before='save')">
+				<div form="@id('fx') @load(person) @load(person) @save(person, before=cmds.save)">
 					<apply person="@load(fx)">
 						Name: <textbox value="@bind(person.name)"/>
 						<separator/>
