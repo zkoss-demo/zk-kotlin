@@ -1,21 +1,19 @@
 package zk.gradle.vm
 
+import org.zkoss.bind.BindUtils
 import org.zkoss.bind.annotation.BindingParam
 import org.zkoss.bind.annotation.Command
-import org.zkoss.bind.annotation.NotifyChange
 import org.zkoss.zk.ui.util.Clients
 import org.zkoss.zul.ListModelList
-
-const val PERSON_TO_EDIT = "personToEdit"
-
-object EditCommands {
-    val edit: String = "edit"
-    val save: String = "save"
-    val cancel: String = "cancel"
-}
+import kotlin.reflect.KProperty
 
 class PersonListViewModel {
-    val commands = EditCommands
+    val commands = object {
+        val EDIT = ::edit.name
+        val SAVE = ::save.name
+        val CANCEL = ::cancel.name
+    }
+
     val persons = ListModelList(listOf(
             Person(name = "Peter", age = 45, address = Address(street = "Nanjing Rd", houseNumber = 123, city = "Taipei")),
             Person(name = "Marvin", age = 30, address = Address(street = "Main St", houseNumber = 30, city = "London")),
@@ -25,26 +23,29 @@ class PersonListViewModel {
     var personToEdit: Person? = null
 
     @Command
-    @NotifyChange(PERSON_TO_EDIT)
     fun edit(@BindingParam("person") person: Person) {
         personToEdit = person
+        notifyChange(::personToEdit)
     }
 
     @Command
-    @NotifyChange(PERSON_TO_EDIT)
     fun save() {
         persons.notifyChange(personToEdit)
         personToEdit = null
+        notifyChange(::personToEdit)
         Clients.showNotification("saved")
     }
 
     @Command
-    @NotifyChange(PERSON_TO_EDIT)
     fun cancel() {
         personToEdit = null
+        notifyChange(::personToEdit)
         Clients.showNotification("cancel")
     }
 }
+
+fun Any.notifyChange(propName: String?) = BindUtils.postNotifyChange(null, null, this, propName)
+fun Any.notifyChange(prop: KProperty<*>) = BindUtils.postNotifyChange(null, null, this, prop.name)
 
 @FormBean data class Person(var name: String, var age: Int, var address: Address)
 

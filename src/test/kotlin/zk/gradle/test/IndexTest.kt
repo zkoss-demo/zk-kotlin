@@ -7,6 +7,7 @@ import org.junit.Test
 import org.zkoss.zats.junit.AutoEnvironment
 import org.zkoss.zul.Label
 import org.zkoss.zul.Textbox
+import zk.gradle.test.util.asComp
 import zk.gradle.test.util.fromComp
 
 /**
@@ -31,12 +32,12 @@ class IndexTest {
         val submitButton = desktopAgent.query("#submit")
         val responseLabel = desktopAgent.query("#response")
 
-        assertEquals("", nameInput.fromComp(Textbox::getValue))
+        assertEquals("", nameInput.asComp<Textbox>().value)
         nameInput.input("Tester");
-        assertEquals("Tester", nameInput.fromComp(Textbox::getValue))
+        assertEquals("Tester", nameInput.asComp<Textbox>().value)
 
         submitButton.click();
-        assertEquals("Hello Tester!", responseLabel.fromComp(Label::getValue));
+        assertEquals("Hello Tester!", responseLabel.asComp<Label>().value);
     }
 
     @Test

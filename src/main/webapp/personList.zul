@@ -1,17 +1,19 @@
 <zk>
 	<div viewModel="@id('vm') @init('zk.gradle.vm.PersonListViewModel')" cmds="@ref(vm.commands)">
-		<forEach items="@init(vm.persons)" var="person">
-			<div>
-				<a onClick="@command(cmds.edit, person=person)" iconSclass="z-icon-edit"/>
-				${person}
-			</div>
-		</forEach>
+		<div id="personList">
+			<forEach items="@init(vm.persons)" var="person">
+				<div>
+					<a onClick="@command(cmds.EDIT, person=person)" iconSclass="z-icon-edit"/>
+					${person}
+				</div>
+			</forEach>
+		</div>
 
 		<apply template="editPersonForm" person="@load(vm.personToEdit)"/>
 
 		<template name="editPersonForm">
 			<if test="@load(person ne null)">
-				<div form="@id('fx') @load(person) @load(person) @save(person, before=cmds.save)">
+				<div id="personEdit" form="@id('fx') @load(person) @load(person) @save(person, before=cmds.SAVE)">
 					<apply person="@load(fx)">
 						Name: <textbox value="@bind(person.name)"/>
 						<separator/>
@@ -26,8 +28,8 @@
 							<separator/>
 						</apply>
 					</apply>
-					<button label="save" onClick="@command(cmds.save)"/>
-					<button label="cancel" onClick="@command(cmds.cancel)"/>
+					<button label="save" onClick="@command(cmds.SAVE)"/>
+					<button label="cancel" onClick="@command(cmds.CANCEL)"/>
 				</div>
 			</if>
 		</template>

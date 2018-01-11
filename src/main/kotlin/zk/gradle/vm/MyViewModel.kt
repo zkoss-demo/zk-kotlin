@@ -9,6 +9,6 @@ class MyViewModel() {
 
     @Command("submit")
     @NotifyChange("response")
-    fun submit () {
+    fun submit() {
     }
 }
