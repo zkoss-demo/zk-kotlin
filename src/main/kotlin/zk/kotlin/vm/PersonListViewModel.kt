@@ -44,7 +44,7 @@ class PersonListViewModel {
     }
 }
 
-fun Any.notifyChange(propName: String?) = BindUtils.postNotifyChange(null, null, this, propName)
+fun Any.notifyChange(propName: String) = BindUtils.postNotifyChange(null, null, this, propName)
 fun Any.notifyChange(prop: KProperty<*>) = BindUtils.postNotifyChange(null, null, this, prop.name)
 
 @FormBean data class Person(var name: String, var age: Int, var address: Address)
