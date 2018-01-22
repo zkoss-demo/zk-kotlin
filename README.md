@@ -1,18 +1,14 @@
-# ZK Gradle
+# ZK Kotlin
 
-Example ZK project using gradle
+Example ZK project using Kotlin
 
 ## Useful Build Commands
 
-run jetty (with gretty plugin)
-```
-./gradlew appRun
-```
-run jetty (with jetty-runner - faster startup time)
+run jetty (with jetty-runner)
 ```
 ./gradlew startJettyRunner
 ```
-http://localhost:8080/zk-gradle
+http://localhost:8080/zk-kotlin
 
 run tests
 ```
