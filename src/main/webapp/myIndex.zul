@@ -1,0 +1,11 @@
+<zk>
+	<div viewModel="@id('vm') @init('zk.kotlin.vm.MyViewModel')">
+		Your Name:
+		<textbox id="name" value="@bind(vm.name)"
+				 onOK="@command('submit')"/>
+		<button id="submit" label="submit"
+				onClick="@command('submit')"/>
+		<separator/>
+		<label id="response" value="@load(vm.response)"/>
+	</div>
+</zk>

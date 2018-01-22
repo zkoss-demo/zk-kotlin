@@ -1,14 +1,13 @@
-package zk.gradle.test
+package zk.kotlin.test
 
-import org.junit.*
 import org.junit.Assert.*
+import org.junit.Test
 import org.zkoss.zats.mimic.ComponentAgent
-import org.zkoss.zats.mimic.DesktopAgent
 import org.zkoss.zats.mimic.QueryAgent
 import org.zkoss.zul.Intbox
 import org.zkoss.zul.Label
 import org.zkoss.zul.Textbox
-import zk.gradle.test.util.asComp
+import zk.kotlin.test.util.asComp
 
 class PersonListTest : BaseTest() {
 
@@ -52,7 +51,6 @@ class PersonListTest : BaseTest() {
                 assertEquals("Graham", nameInput.asComp<Textbox>().value)
                 assertEquals(37, ageInput.asComp<Intbox>().value)
 
-                val componentAgent: ComponentAgent = this
                 this.nameInput.input("Grammy")
                 ageInput.input(100)
                 saveButton.click()

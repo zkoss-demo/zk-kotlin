@@ -1,4 +1,4 @@
-package zk.gradle.test;
+package zk.kotlin.test;
 
 import org.junit.Assert.assertEquals
 import org.junit.ClassRule
@@ -7,16 +7,21 @@ import org.junit.Test
 import org.zkoss.zats.junit.AutoEnvironment
 import org.zkoss.zul.Label
 import org.zkoss.zul.Textbox
-import zk.gradle.test.util.asComp
-import zk.gradle.test.util.fromComp
+import zk.kotlin.test.util.asComp
+import zk.kotlin.test.util.fromComp
 
 /**
- * example Zats Test case for index.zul see https://www.zkoss.org/wiki/ZATS_Essentials/Getting_Started
+ * example Zats Test case for myIndex.zul see https://www.zkoss.org/wiki/ZATS_Essentials/Getting_Started
  */
-class IndexTest : BaseTest() {
+class MyIndexTest : BaseTest() {
     @Test
-    fun testIndex() {
-        val desktopAgent = client.connect("/index.zul")
+    fun testMyIndex() = testPage("/myIndex.zul")
+
+    @Test
+    fun testSafeIndex() = testPage("/mySafeIndex.zul")
+
+    fun testPage(pageUri: String) {
+        val desktopAgent = client.connect(pageUri)
 
         val nameInput = desktopAgent.query("#name")
         val submitButton = desktopAgent.query("#submit")

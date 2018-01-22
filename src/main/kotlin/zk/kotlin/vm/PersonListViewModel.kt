@@ -1,11 +1,10 @@
-package zk.gradle.vm
+package zk.kotlin.vm
 
-import org.zkoss.bind.BindUtils
 import org.zkoss.bind.annotation.BindingParam
 import org.zkoss.bind.annotation.Command
 import org.zkoss.zk.ui.util.Clients
 import org.zkoss.zul.ListModelList
-import kotlin.reflect.KProperty
+import zk.kotlin.vm.util.notifyChange
 
 class PersonListViewModel {
     val commands = object {
@@ -43,9 +42,6 @@ class PersonListViewModel {
         Clients.showNotification("cancel")
     }
 }
-
-fun Any.notifyChange(propName: String) = BindUtils.postNotifyChange(null, null, this, propName)
-fun Any.notifyChange(prop: KProperty<*>) = BindUtils.postNotifyChange(null, null, this, prop.name)
 
 @FormBean data class Person(var name: String, var age: Int, var address: Address)
 

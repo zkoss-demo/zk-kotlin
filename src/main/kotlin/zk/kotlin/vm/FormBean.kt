@@ -1,3 +1,3 @@
-package zk.gradle.vm
+package zk.kotlin.vm
 
 annotation class FormBean

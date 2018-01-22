@@ -1,4 +1,4 @@
-package zk.gradle.vm
+package zk.kotlin.vm
 
 import org.zkoss.bind.annotation.Command
 import org.zkoss.bind.annotation.NotifyChange

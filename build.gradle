@@ -16,10 +16,10 @@ apply plugin: "kotlin-noarg"
 apply plugin: "kotlin-allopen"
 
 noArg {
-	annotation("zk.gradle.vm.FormBean")
+	annotation("zk.kotlin.vm.FormBean")
 }
 allOpen {
-	annotation("zk.gradle.vm.FormBean")
+	annotation("zk.kotlin.vm.FormBean")
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -37,8 +37,8 @@ sourceSets {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-	compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
-	compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+	compile "org.jetbrains.kotlin:kotlin-stdlib"
+	compile "org.jetbrains.kotlin:kotlin-reflect"
 
 	compile "org.zkoss.zk:zkmax:${zkVersion}"
 	compile "org.zkoss.zk:zuti:${zkVersion}"

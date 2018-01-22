@@ -1,4 +1,4 @@
-package zk.gradle.test.util
+package zk.kotlin.test.util
 
 import org.zkoss.zats.mimic.ComponentAgent
 import org.zkoss.zats.mimic.operation.OperationAgent

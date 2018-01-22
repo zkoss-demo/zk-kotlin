@@ -1,10 +1,10 @@
 <zk>
-	<div viewModel="@id('vm') @init('zk.gradle.vm.PersonListViewModel')" cmds="@ref(vm.commands)">
+	<div viewModel="@id('vm') @init('zk.kotlin.vm.PersonListViewModel')" cmds="@ref(vm.commands)">
 		<div id="personList">
 			<forEach items="@init(vm.persons)" var="person">
 				<div>
 					<a onClick="@command(cmds.EDIT, person=person)" iconSclass="z-icon-edit"/>
-					${person}
+					<label value="${person}"/>
 				</div>
 			</forEach>
 		</div>
@@ -15,16 +15,16 @@
 			<if test="@load(person ne null)">
 				<div id="personEdit" form="@id('fx') @load(person) @load(person) @save(person, before=cmds.SAVE)">
 					<apply person="@load(fx)">
-						Name: <textbox value="@bind(person.name)"/>
+						Name <textbox id="personName" value="@bind(person.name)"/>
 						<separator/>
-						Age: <intbox value="@bind(person.age)"/>
+						Age <intbox id="personAge" value="@bind(person.age)"/>
 						<separator/>
 						<apply address="@load(person.address)">
-							Street: <textbox value="@bind(address.street)"/>
+							Street <textbox value="@bind(address.street)"/>
 							<separator/>
-							HouseNumber: <textbox value="@bind(address.houseNumber)"/>
+							House Number <textbox value="@bind(address.houseNumber)"/>
 							<separator/>
-							City: <textbox value="@bind(address.city)"/>
+							City <textbox value="@bind(address.city)"/>
 							<separator/>
 						</apply>
 					</apply>
