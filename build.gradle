@@ -55,5 +55,5 @@ dependencies {
 task startJettyRunner(type: JavaExec) {
 	classpath = sourceSets.jettyRunner.runtimeClasspath
 	main 'org.eclipse.jetty.runner.Runner'
-	args '--path', "/${rootProject.name}", 'jetty-dev-context.xml'
+	args '--path', "/${rootProject.name}", 'src/main/webapp'
 }
