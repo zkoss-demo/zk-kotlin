@@ -8,12 +8,11 @@ import org.zkoss.zats.junit.AutoEnvironment
 import org.zkoss.zul.Label
 import org.zkoss.zul.Textbox
 import zk.kotlin.test.util.asComp
-import zk.kotlin.test.util.fromComp
 
 /**
  * example Zats Test case for myIndex.zul see https://www.zkoss.org/wiki/ZATS_Essentials/Getting_Started
  */
-class MyIndexTest : BaseTest() {
+class MyIndexTest2 : BaseTest() {
     @Test
     fun testMyIndex() = testPage("/myIndex.zul")
 
@@ -32,6 +31,6 @@ class MyIndexTest : BaseTest() {
         assertEquals("Tester", nameInput.asComp<Textbox>().value)
 
         submitButton.click();
-        assertEquals("Hello Tester!", responseLabel.asComp<Label>().value);
+        assertEquals("Hello Tester!", responseLabel.asComp<Label>().value)
     }
 }

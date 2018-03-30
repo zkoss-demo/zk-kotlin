@@ -12,5 +12,4 @@ open class BaseTest {
 
     @Rule @JvmField
     val client = env.autoClient()
-
 }

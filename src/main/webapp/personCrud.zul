@@ -1,0 +1,50 @@
+<zk>
+	<style>
+		.grid-2 {
+			display: grid;
+			grid-template-columns: max-content max-content;
+		    grid-gap: 10px;
+			align-items: center;
+		}
+	</style>
+	<div viewModel="@id('vm') @init('zk.kotlin.vm.PersonCrudViewModel')"
+		 cmds="@ref(vm.commands)">
+		<div id="personList" sclass="grid-2">
+			<forEach items="@init(vm.persons)" var="person">
+				<label value="${person.name} (${person.age})"/>
+				<span>
+					<if test="@load(not vm.editing)">
+						<a onClick="@command(cmds.EDIT, person=person)" iconSclass="z-icon-edit"/>
+					</if>
+					<a onClick="@command(cmds.DELETE, person=person)" iconSclass="z-icon-times"/>
+				</span>
+			</forEach>
+		</div>
+		<separator/>
+
+		<if test="@load(not vm.editing)">
+			<button iconSclass="z-icon-plus" onClick="@command(cmds.CREATE)"/>
+		</if>
+		<if test="@load(vm.editing)">
+			<apply template="editPersonForm" person="@load(vm.personToEdit)"/>
+		</if>
+
+		<!-- templates could be in a separate file too -->
+		<template name="editPersonForm">
+			<groupbox id="personEdit" title="Edit Person" closable="false" style="display: inline-block">
+				<div sclass="grid-2" form="@id('fx') @load(person) @save(person, before=cmds.SAVE)">
+					Name <textbox id="personName" value="@bind(fx.name)"/>
+					Age <intbox id="personAge" value="@bind(fx.age)"/>
+					Street <textbox value="@bind(fx.address.street)"/>
+					House Number <textbox value="@bind(fx.address.houseNumber)"/>
+					City <textbox value="@bind(fx.address.city)"/>
+				</div>
+				<separator/>
+				<hlayout>
+					<button label="cancel" onClick="@command(cmds.CANCEL)"/>
+					<button label="save" onClick="@command(cmds.SAVE)"/>
+				</hlayout>
+			</groupbox>
+		</template>
+	</div>
+</zk>
