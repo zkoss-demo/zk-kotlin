@@ -4,7 +4,7 @@ node {
       checkout scm
     }
     stage('Build') {
-      sh "./gradlew clean buil d"
+      sh "./gradlew clean buildXYZ"
     }
     stage('Results') {
       junit 'build/test-results/test/TEST-*.xml'
