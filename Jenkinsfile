@@ -12,5 +12,6 @@ node {
     }
   } catch(e) {
     emailextrecipients([[$class: 'CulpritsRecipientProvider']])
+    emailext body: 'Failed Build', recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build Failed'
   }
 }
