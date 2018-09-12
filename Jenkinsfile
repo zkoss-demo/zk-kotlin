@@ -11,7 +11,10 @@ node {
       archiveArtifacts 'build/libs/*.war'
     }
   } catch(e) {
-    emailextrecipients([[$class: 'CulpritsRecipientProvider']])
-    emailext body: 'Failed Build', recipientProviders: [[$class: 'DevelopersRecipientProvider']], subject: 'Build Failed'
+    emailext (
+      subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+      body: "${env.BUILD_URL}", 
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
+    )
   }
 }
