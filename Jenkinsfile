@@ -11,6 +11,7 @@ node {
       archiveArtifacts 'build/libs/*.war'
     }
   } catch(e) {
+
   }
     emailextrecipients([[$class: 'CulpritsRecipientProvider']])
 }
