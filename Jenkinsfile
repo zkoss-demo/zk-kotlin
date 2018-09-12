@@ -12,9 +12,9 @@ node {
     }
   } catch(e) {
     emailext (
-      subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+      subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
       body: "${env.BUILD_URL}", 
-      recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
     )
   }
 }
